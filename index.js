@@ -97,6 +97,7 @@ apiRoutes.post('/authenticate', function (req, res) {
 
 //userinfo
 //need to specify jwt token on headers
+//having toubles with this route 
 //TypeError: parsed_url.query.hasOwnProperty is not a function. 
 apiRoutes.get('/userinfo', passport.authenticate('jwt', {
     session: false
@@ -130,7 +131,7 @@ apiRoutes.get('/userinfo', passport.authenticate('jwt', {
     }
 });
 
-});
+
 
 //get token from headers
 getToken = function (headers) {
