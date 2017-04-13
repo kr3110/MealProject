@@ -8,7 +8,7 @@ module.exports = function(passport) {
   var opts = {};
   opts.secretOrKey = config.secret;
   passport.use(new jwt(opts, function(jwt_payload, done) {
-    user.findOne({id: jwt_payload.id}, function(err, user) {
+    uaser.findOne({id: jwt_payload.id}, function(err, user) {
           if (err) {
               return done(err, false);
           }
