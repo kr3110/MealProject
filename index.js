@@ -29,7 +29,7 @@ mongoose.connect(config.database);
 require('./config/passport')(passport);
 var apiRoutes = express.Router();
 //signup restaurant
-piRoutes.post('/signup_restaurant/', function (req, res) {
+apiRoutes.post('/signup_restaurant/', function (req, res) {
     if (!req.body.name || !req.body.password) {
         res.json({
             success: false
