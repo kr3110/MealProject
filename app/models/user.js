@@ -11,10 +11,11 @@ var userSchema = new Schema({
     , password: {
         type: String
         , required: true
-    },name:{
+    }
+    , name: {
         type: String
-    },
-    lastname:{
+    }
+    , lastname: {
         type: String
     }
 });
@@ -33,11 +34,11 @@ userSchema.pre('save', function (next) {
                 next();
             });
         });
-    } else {
+    }
+    else {
         return next();
     }
 });
- 
 userSchema.methods.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
@@ -46,6 +47,4 @@ userSchema.methods.comparePassword = function (passw, cb) {
         cb(null, isMatch);
     });
 };
- 
-
-module.exports=mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

@@ -6,12 +6,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var config = require('./config/database');
 var User = require('./app/models/user');
-var messages= require('./app//models/messages');
+var messages = require('./app//models/messages');
 var port = process.env.PORT || 8080;
 var jwt = require('jwt-simple');
-var server= require('http').Server(app);
-var io= require('socket.io')(server);
-                
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 //request parameters
 app.use(bodyParser.urlencoded({
     extended: false
@@ -28,22 +27,20 @@ app.get('/', function (req, res) {
 mongoose.connect(config.database);
 require('./config/passport')(passport);
 var apiRoutes = express.Router();
-
-
 //signup
 apiRoutes.post('/signup', function (req, res) {
     if (!req.body.name || !req.body.password) {
         res.json({
             success: false
-            , msg: 'Please pass name and password.'
+            , msg: 'Please pass user fields'
         });
     }
     else {
         var newUser = new User({
             email: req.body.email
             , password: req.body.password
-            , name: req.body.name,
-            lastname: req.body.lastname
+            , name: req.body.name
+            , lastname: req.body.lastname
         });
         // save the user
         newUser.save(function (err) {
@@ -65,7 +62,7 @@ app.use('/api', apiRoutes);
 //authentication
 apiRoutes.post('/authenticate', function (req, res) {
     User.findOne({
-        name: req.body.name
+        email: req.body.email
     }, function (err, user) {
         if (err) throw err;
         if (!user) {
@@ -96,7 +93,6 @@ apiRoutes.post('/authenticate', function (req, res) {
         }
     });
 });
-
 //userinfo
 //need to specify jwt token on headers
 //having toubles with this route 
@@ -120,7 +116,9 @@ apiRoutes.get('/userinfo', passport.authenticate('jwt', {
             else {
                 res.json({
                     success: true
-                    , msg: 'Welcome' + user.name + '!'
+                    , name: user.name
+                    , lastname: user.lastname
+                    , email: user.email
                 });
             }
         });
@@ -132,9 +130,6 @@ apiRoutes.get('/userinfo', passport.authenticate('jwt', {
         });
     }
 });
-
-
-
 //get token from headers
 getToken = function (headers) {
     if (headers && headers.authorization) {
@@ -150,7 +145,5 @@ getToken = function (headers) {
         return null;
     }
 };
-
-
 app.listen(port);
 console.log('testing');
