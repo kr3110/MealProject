@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link }             from 'react-router';
 
 class Navigation extends Component {
     render() {
@@ -20,9 +21,9 @@ class Navigation extends Component {
                                 {/*</div>*/}
                             {/*</form>*/}
                             <ul className="nav navbar-nav navbar-right" id="mainNav">
-                                <li><a href="#">HOME</a></li>
+                                <li><Link to="/home">HOME</Link></li>
+                                <li><a href="#">HOW IT WORKS</a></li>
                                 <li><a href="#">ABOUT US</a></li>
-                                <li><a href="#">LOG IN</a></li>
                             </ul>
                         </div>
                 </nav>

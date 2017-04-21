@@ -149,3 +149,50 @@ body {
     margin-top: 25px;
     font-size: 30px;
 }
+
+#login {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    background: #000099;
+    width: 101.2%;
+    height: 350px;
+}
+
+#login-button {
+    width: 125px;
+    margin-top: 20px;
+}
+
+#search {
+    width: 30px;
+    position: relative;
+    left: 565px;
+    top: -43px;
+}
+
+.col-xs-6 {
+    padding-left: 30px;
+}
+
+#map {
+    width: 500px;
+}
+
+#map-container {
+    padding-left: 50px;
+}
+
+#profile {
+    background: #000099;
+    padding: 60px;
+    width: 50%;
+}
+
+#profile-container {
+    margin-left: 380px;
+}
+
+#journeys {
+    margin-top: 30px;
+    width: 30%;
+}
